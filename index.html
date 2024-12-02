@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Média</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, p {
+            font-size: 2em;
+        }
+        input {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 1.2em;
+            width: calc(100% - 22px);
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #0000ff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.3em;
+        }
+        button:hover {
+            background-color: #000080;
+        }
+        #resultado.aprovado {
+            color: #0000ff;
+        }
+        #resultado.reprovado {
+            color: #ff0000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculadora de Média</h1>
+    <p>Insira as três notas do aluno:</p>
+    <input type="number" id="nota1" placeholder="Nota 1">
+    <input type="number" id="nota2" placeholder="Nota 2">
+    <input type="number" id="nota3" placeholder="Nota 3">
+    <button onclick="calcularMedia()">Calcular Média</button>
+    <p id="resultado"></p>
+    
+    <script>
+        function calcularMedia() {
+            var nota1 = parseFloat(document.getElementById('nota1').value);
+            var nota2 = parseFloat(document.getElementById('nota2').value);
+            var nota3 = parseFloat(document.getElementById('nota3').value);
+            var media = (nota1 + nota2 + nota3) / 3;
+            var resultado = '';
+            var resultadoElem = document.getElementById('resultado');
+            
+            if (media >= 6) {
+                resultadoElem.className = 'aprovado';
+                resultado = 'Aprovado! Média: ' + media.toFixed(2);
+            } else {
+                var pontosFaltando = 6 - media;
+                resultadoElem.className = 'reprovado';
+                resultado = 'Reprovado. Média: ' + media.toFixed(2) + '. Faltam ' + pontosFaltando.toFixed(2) + ' pontos para passar. Não desista, continue estudando!';
+            }
+            
+            resultadoElem.innerText = resultado;
+        }
+    </script>
+</body>
+</html>
